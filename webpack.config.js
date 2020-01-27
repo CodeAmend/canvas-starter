@@ -1,3 +1,6 @@
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -19,6 +22,19 @@ module.exports = {
   resolve: {
     extensions: ['ts', 'js'],
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'CanVo: Canvas with Velocity',
+    }),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3131,
+      server: {
+        baseDir: ['dist'],
+      },
+    }),
+  ],
 
   output: {
     filename: 'bundle.js',
