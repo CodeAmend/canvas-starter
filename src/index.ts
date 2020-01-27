@@ -1,19 +1,31 @@
-interface Person {
-  firstName: string;
-  lastName: string;
+import './custom.window.ts';
+
+interface CanvasOptions {
+  width?: number
+  height?: number
+  backgroundColor?: string
 }
 
-class Student {
-  fullName: string;
-  constructor(public firstName: string, public middleName: string, public lastName: string) {
-    this.fullName = firstName + " " + middleName  + " " + lastName;
+(function(window, document) {
+
+  class CanVo {
+    private canvas: HTMLCanvasElement;
+
+    constructor(id: string, options: CanvasOptions = {}) {
+      const canvas = <HTMLCanvasElement> document.getElementById(id);
+      canvas.width =  document.body.clientWidth;
+      canvas.height = document.body.clientHeight;
+      canvas.style.backgroundColor = options.backgroundColor || 'white';
+
+      this.canvas = canvas;
+    }
+
+    getCanvas() {
+      // TODO: temp to use this.canvas ts warning
+      return this.canvas;
+    }
   }
-}
 
-function greeter(person: Person) {
-  return "Hello, " + person.firstName + " " + person.lastName;
-}
-
-let user = new Student("Michael", "Bruce", "Allen");
-
-document.body.textContent = greeter(user);
+  window.CanVo = CanVo;
+  
+})(window, document);

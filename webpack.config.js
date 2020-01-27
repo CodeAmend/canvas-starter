@@ -25,7 +25,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'CanVo: Canvas with Velocity',
+      template: './src/index.html',
     }),
     new BrowserSyncPlugin({
       host: 'localhost',
